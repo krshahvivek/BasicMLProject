@@ -5,6 +5,9 @@ import numpy
 import matplotlib
 import pandas
 import sklearn
+from pandas import read_csv
+from pandas.plotting import scatter_matrix
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
 # print('Python: {}'.format(sys.version))
@@ -27,9 +30,6 @@ mydataframe = pandas.DataFrame(myarray, index=rownames, columns=colnames)
 print(mydataframe)
 
 # Load CSV using Pandas from URL
-from pandas import read_csv
-from pandas.plotting import scatter_matrix
-import matplotlib.pyplot as plt
 
 url = "https://goo.gl/bDdBiA"
 names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
