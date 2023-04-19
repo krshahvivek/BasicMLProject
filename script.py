@@ -1,4 +1,3 @@
-# Python version
 import sys
 import scipy
 import numpy
@@ -9,7 +8,11 @@ from pandas import read_csv
 from pandas.plotting import scatter_matrix
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
 
+# Python version
 # print('Python: {}'.format(sys.version))
 # scipy
 # print('scipy: {}'.format(scipy.__version__))
@@ -45,9 +48,15 @@ scaler = StandardScaler().fit(X)
 rescaledX = scaler.transform(X)
 # summarize transformed data
 numpy.set_printoptions(precision=3)
-print(rescaledX[0:5,:])
+# print(rescaledX[0:5,:])
 
 # Scatter Plot Matrix
 scatter_matrix(data)
 plt.show()
 
+
+
+kfold = KFold(n_splits=10, random_state=7)
+model = LogisticRegression(solver='liblinear')
+results = cross_val_score(model, X, Y, cv=kfold)
+print("Accuracy: %.3f%% (%.3f%%)" % (results.mean()*100.0, results.std()*100.0))
